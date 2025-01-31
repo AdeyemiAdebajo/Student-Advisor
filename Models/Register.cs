@@ -3,7 +3,10 @@ using StudentAdvisor.Models;
 using System.ComponentModel.DataAnnotations;
 
 public class Register
+
+
 {
+    public int RegisterId { get; set; }
    [Required(ErrorMessage = "Full Name is required.")]
     public string FullName { get; set; }
 
