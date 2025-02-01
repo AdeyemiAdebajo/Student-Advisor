@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 using StudentAdvisor.Models;
 
-public class Login
+public class Logins
 {
     [Required(ErrorMessage = "Email is required")]
     public string Email { get; set; }

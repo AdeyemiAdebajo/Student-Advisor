@@ -49,7 +49,7 @@ namespace StudentAdvisor.Pages.Registers
             _context.Register.Add(user);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("/Login");
+            return RedirectToPage("/Logins");
         }
 
         
