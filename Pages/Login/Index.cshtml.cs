@@ -16,6 +16,7 @@ namespace StudentAdvisor.Pages.Login
         {
             _context = context;
         }
+        
 
         [BindProperty]
         public Logins Logins { get; set; } = new Logins();
@@ -39,5 +40,8 @@ namespace StudentAdvisor.Pages.Login
             // Redirect to a dashboard or homepage after successful login
             return RedirectToPage("/Dashboard/Index");
         }
+        // public async Task<IActionResult> OnGetLogOut(){
+        //     await _signIn
+        // }
     }
 }
