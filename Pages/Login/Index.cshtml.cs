@@ -37,7 +37,7 @@ namespace StudentAdvisor.Pages.Login
             }
 
             // Redirect to a dashboard or homepage after successful login
-            return RedirectToPage("/Dashboard");
+            return RedirectToPage("/Dashboard/Index");
         }
     }
 }
