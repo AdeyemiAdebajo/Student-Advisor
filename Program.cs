@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+// using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 using StudentAdvisor.Data;
 
@@ -15,7 +17,15 @@ builder.Services.AddDbContext<AppDbcontext>(options =>
  .EnableSensitiveDataLogging()
  .EnableDetailedErrors()
 );
-builder.Services.AddDistributedMemoryCache(); // Needed for session
+// Add Identity services
+// builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
+// {
+//     options.SignIn.RequireConfirmedAccount = true;
+// })
+// .AddEntityFrameworkStores<AppDbcontext>()
+// .AddDefaultTokenProviders(); 
+
+ // Needed for session
 builder.Services.AddSession(options =>
 {
     options.IdleTimeout = TimeSpan.FromMinutes(30); // Session timeout (30 minutes)

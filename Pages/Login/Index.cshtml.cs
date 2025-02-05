@@ -5,12 +5,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using StudentAdvisor.Data;
 using StudentAdvisor.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace StudentAdvisor.Pages.Login
 {
     public class IndexModel : PageModel
     {
         private readonly StudentAdvisor.Data.AppDbcontext _context;
+        private readonly SignInManager<IdentityUser>_signInmanager;
 
         public IndexModel(StudentAdvisor.Data.AppDbcontext context)
         {
