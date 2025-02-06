@@ -19,20 +19,17 @@ builder.Services.AddDbContext<AppDbcontext>(options =>
  .EnableDetailedErrors()
 );
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => 
+builder.Services.AddDefaultIdentity<Register>(options => 
 { 
     options.SignIn.RequireConfirmedAccount = false;
 
 })
 .AddRoles<IdentityRole>()
 .AddEntityFrameworkStores<AppDbcontext>();
-// Add Identity services
-// builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
-// {
-//     options.SignIn.RequireConfirmedAccount = true;
-// })
-// .AddEntityFrameworkStores<AppDbcontext>()
-// .AddDefaultTokenProviders(); 
+
+//  Register UserManager & SignInManager for Custom User Model
+builder.Services.AddScoped<UserManager<Register>>();
+builder.Services.AddScoped<SignInManager<Register>>();
 
 // Needed for session
 builder.Services.AddSession(options =>

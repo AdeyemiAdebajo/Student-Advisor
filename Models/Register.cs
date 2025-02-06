@@ -1,30 +1,18 @@
 namespace StudentAdvisor.Models;
 
 using Microsoft.AspNetCore.Identity;
-using StudentAdvisor.Models;
 using System.ComponentModel.DataAnnotations;
+using StudentAdvisor.Models;
 
 public class Register : IdentityUser
-
-
 {
-    public int RegisterId{ get; set; }
-   [Required(ErrorMessage = "Full Name is required.")]
-    public string FullName { get; set; }
+    [Required(ErrorMessage = "First Name is required.")]
+    [StringLength(50, ErrorMessage = "First Name cannot be longer than 50 characters.")]
+    public string FirstName { get; set; }
 
-    [Required(ErrorMessage = "Email is required.")]
-    [EmailAddress(ErrorMessage = "Invalid email format.")]
-    public string Email { get; set; }
+    [Required(ErrorMessage = "Last Name is required.")]
+    [StringLength(50, ErrorMessage = "Last Name cannot be longer than 50 characters.")]
+    public string LastName { get; set; }
 
-    [Required(ErrorMessage = "Password is required.")]
-    [DataType(DataType.Password)]
-    [MinLength(8, ErrorMessage = "Password must be at least 8 characters.")]
-    [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}$", 
-        ErrorMessage = "Password must have at least one uppercase, one lowercase, and one special character.")]
-    public string Password { get; set; }
-
-    [Required(ErrorMessage = "Confirm Password is required.")]
-    [DataType(DataType.Password)]
-    [Compare("Password", ErrorMessage = "Passwords do not match.")]
-    public string ConfirmPassword { get; set; }
+    public string FullName => $"{FirstName} {LastName}";  // Optional helper property
 }
