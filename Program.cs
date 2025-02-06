@@ -1,13 +1,14 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
-// using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using StudentAdvisor.Models;
 using StudentAdvisor.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
 ServerVersion serverVersion = new MariaDbServerVersion(new Version(10, 4, 32));
 
 
@@ -17,6 +18,14 @@ builder.Services.AddDbContext<AppDbcontext>(options =>
  .EnableSensitiveDataLogging()
  .EnableDetailedErrors()
 );
+
+builder.Services.AddDefaultIdentity<IdentityUser>(options => 
+{ 
+    options.SignIn.RequireConfirmedAccount = false;
+
+})
+.AddRoles<IdentityRole>()
+.AddEntityFrameworkStores<AppDbcontext>();
 // Add Identity services
 // builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 // {
@@ -25,7 +34,7 @@ builder.Services.AddDbContext<AppDbcontext>(options =>
 // .AddEntityFrameworkStores<AppDbcontext>()
 // .AddDefaultTokenProviders(); 
 
- // Needed for session
+// Needed for session
 builder.Services.AddSession(options =>
 {
     options.IdleTimeout = TimeSpan.FromMinutes(30); // Session timeout (30 minutes)

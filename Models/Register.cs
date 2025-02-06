@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using StudentAdvisor.Models;
 using System.ComponentModel.DataAnnotations;
 
-public class Register:IdentityUser
+public class Register : IdentityUser
 
 
 {
