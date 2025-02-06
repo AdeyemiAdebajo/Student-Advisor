@@ -1,10 +1,10 @@
 
-namespace StudentAdvisor.Models;
+
 using StudentAdvisor.Models;
 using System.ComponentModel.DataAnnotations;
 
 using StudentAdvisor.Models;
-
+namespace StudentAdvisor.Models;
 public class Logins
 {
     [Required(ErrorMessage = "Email is required")]

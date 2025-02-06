@@ -1,12 +1,14 @@
 namespace StudentAdvisor.Models;
+
+using Microsoft.AspNetCore.Identity;
 using StudentAdvisor.Models;
 using System.ComponentModel.DataAnnotations;
 
-public class Register
+public class Register:IdentityUser
 
 
 {
-    public int RegisterId { get; set; }
+    public int RegisterId{ get; set; }
    [Required(ErrorMessage = "Full Name is required.")]
     public string FullName { get; set; }
 
