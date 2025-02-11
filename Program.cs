@@ -7,7 +7,11 @@ using StudentAdvisor.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddRazorPages();
+// builder.Services.AddRazorPages();
+builder.Services.AddRazorPages(options =>
+{
+    options.Conventions.AuthorizeFolder("/");
+});
 
 ServerVersion serverVersion = new MariaDbServerVersion(new Version(10, 4, 32));
 
@@ -19,8 +23,8 @@ builder.Services.AddDbContext<AppDbcontext>(options =>
  .EnableDetailedErrors()
 );
 
-builder.Services.AddDefaultIdentity<Register>(options => 
-{ 
+builder.Services.AddDefaultIdentity<Register>(options =>
+{
     options.SignIn.RequireConfirmedAccount = false;
 
 })
@@ -56,6 +60,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
 
 app.MapRazorPages();
 

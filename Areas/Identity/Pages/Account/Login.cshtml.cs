@@ -115,7 +115,9 @@ namespace StudentAdvisor.Areas.Identity.Pages.Account
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
+                    var client=Input.Email;
                     _logger.LogInformation("User logged in.");
+                    // return RedirectToPage("/");
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
