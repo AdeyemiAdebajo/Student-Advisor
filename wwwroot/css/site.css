@@ -20,3 +20,21 @@ html {
 body {
   margin-bottom: 60px;
 }
+/* Active Link (Remains Blue) */
+.nav-link.active {
+  background-color:black !important; /* Bootstrap Blue */
+  color: black !important;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Hover Effect (Turns Blue on Hover) */
+.nav-link:hover {
+  background-color: rgba(13, 110, 253, 0.1); /* Light Blue Background */
+  color: blue !important; /* Bootstrap Blue Text */
+}
+.nav-link {
+  color: #000 !important; /* Black by Default */
+  transition: all 0.3s ease-in-out;
+}
+
+

@@ -24,6 +24,12 @@ builder.Services.AddDbContext<AppDbcontext>(options =>
     .EnableSensitiveDataLogging()
     .EnableDetailedErrors()
 );
+builder.Services.AddDbContext<AppDbcontext2>(options =>
+    options.UseMySql(builder.Configuration.GetConnectionString("StudentAdvisorDb"), serverVersion)
+    .LogTo(Console.WriteLine, LogLevel.Information)
+    .EnableSensitiveDataLogging()
+    .EnableDetailedErrors()
+);
 
 builder.Services.AddDefaultIdentity<Register>(options => 
 { 
