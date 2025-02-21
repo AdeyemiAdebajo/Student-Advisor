@@ -26,13 +26,13 @@ namespace StudentAdvisor.Areas.Identity.Pages.Account
         public async Task<IActionResult> OnGet()
         {
             await _signInManager.SignOutAsync();
-            return LocalRedirect("/");
+            return LocalRedirect("/Identity/Account/Login");
             
         }
         public async Task<IActionResult> OnPost()
         {
             await _signInManager.SignOutAsync();
-            return LocalRedirect("/");
+            return LocalRedirect("/Identity/Account/Login");
             
         }
 
