@@ -15,23 +15,7 @@ namespace StudentAdvisor.Migrations.AppDbcontext2Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Assignment",
-                columns: table => new
-                {
-                    StudyId = table.Column<ushort>(type: "smallint unsigned", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    StudentsId = table.Column<ushort>(type: "smallint unsigned", nullable: false),
-                    programTitle = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Assignment", x => x.StudyId);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "Course",
+                name: "Student",
                 columns: table => new
                 {
                     StudentId = table.Column<ushort>(type: "smallint unsigned", nullable: false)
@@ -50,7 +34,23 @@ namespace StudentAdvisor.Migrations.AppDbcontext2Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Course", x => x.StudentId);
+                    table.PrimaryKey("PK_Student", x => x.StudentId);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Study",
+                columns: table => new
+                {
+                    StudyId = table.Column<ushort>(type: "smallint unsigned", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    StudentId = table.Column<ushort>(type: "smallint unsigned", nullable: false),
+                    programTitle = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Study", x => x.StudyId);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -65,16 +65,16 @@ namespace StudentAdvisor.Migrations.AppDbcontext2Migrations
                 {
                     table.PrimaryKey("PK_StudentStudy", x => new { x.StudentsStudentId, x.StudiesStudyId });
                     table.ForeignKey(
-                        name: "FK_StudentStudy_Assignment_StudiesStudyId",
-                        column: x => x.StudiesStudyId,
-                        principalTable: "Assignment",
-                        principalColumn: "StudyId",
+                        name: "FK_StudentStudy_Student_StudentsStudentId",
+                        column: x => x.StudentsStudentId,
+                        principalTable: "Student",
+                        principalColumn: "StudentId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_StudentStudy_Course_StudentsStudentId",
-                        column: x => x.StudentsStudentId,
-                        principalTable: "Course",
-                        principalColumn: "StudentId",
+                        name: "FK_StudentStudy_Study_StudiesStudyId",
+                        column: x => x.StudiesStudyId,
+                        principalTable: "Study",
+                        principalColumn: "StudyId",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
@@ -92,10 +92,10 @@ namespace StudentAdvisor.Migrations.AppDbcontext2Migrations
                 name: "StudentStudy");
 
             migrationBuilder.DropTable(
-                name: "Assignment");
+                name: "Student");
 
             migrationBuilder.DropTable(
-                name: "Course");
+                name: "Study");
         }
     }
 }

@@ -54,7 +54,7 @@ namespace StudentAdvisor.Migrations.AppDbcontext2Migrations
 
                     b.HasKey("StudentId");
 
-                    b.ToTable("Course", (string)null);
+                    b.ToTable("Student", (string)null);
                 });
 
             modelBuilder.Entity("StudentAdvisor.Models.Study", b =>
@@ -65,7 +65,7 @@ namespace StudentAdvisor.Migrations.AppDbcontext2Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<ushort>("StudyId"));
 
-                    b.Property<ushort>("StudentsId")
+                    b.Property<ushort>("StudentId")
                         .HasColumnType("smallint unsigned");
 
                     b.Property<string>("programTitle")
@@ -74,7 +74,7 @@ namespace StudentAdvisor.Migrations.AppDbcontext2Migrations
 
                     b.HasKey("StudyId");
 
-                    b.ToTable("Assignment", (string)null);
+                    b.ToTable("Study", (string)null);
                 });
 
             modelBuilder.Entity("StudentStudy", b =>

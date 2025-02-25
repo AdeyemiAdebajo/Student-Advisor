@@ -14,7 +14,7 @@ public class AppDbcontext2 : DbContext
           protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         
-        modelBuilder.Entity<Student>().ToTable("Course");
-        modelBuilder.Entity<Study>().ToTable("Assignment");
+        modelBuilder.Entity<Student>().ToTable("Student");
+        modelBuilder.Entity<Study>().ToTable("Study");
     }
 }
