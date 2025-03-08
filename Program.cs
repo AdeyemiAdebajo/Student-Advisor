@@ -7,13 +7,6 @@ using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
-<<<<<<< HEAD
-// Add services to the container.
-// builder.Services.AddRazorPages();
-builder.Services.AddRazorPages(options =>
-{
-    options.Conventions.AuthorizeFolder("/");
-=======
 // Add services to the container with authentication enforced
 // builder.Services.AddRazorPages();
 builder.Services.AddRazorPages(options =>
@@ -23,7 +16,6 @@ builder.Services.AddRazorPages(options =>
 
     // Allow anonymous access to the login page
     options.Conventions.AllowAnonymousToPage("/Identity/Account/Login");
->>>>>>> maindashboard
 });
 
 // builder.Services.AddDbContext<AppDbcontext2>(options =>
