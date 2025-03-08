@@ -1,7 +1,8 @@
-using System;
+
 using System.ComponentModel.DataAnnotations;
 
 namespace StudentAdvisor.Models;
+using StudentAdvisor.Models;
 
 public class Course
 {

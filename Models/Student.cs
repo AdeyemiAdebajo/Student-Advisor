@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
-using StudentAdvisor.Migrations;
+using StudentAdvisor.Models;
+// using StudentAdvisor.Migrations;
 
 namespace StudentAdvisor.Models;
 
@@ -13,7 +14,7 @@ public class Student
     public string PhoneNumber { get; set; } = "";
     public string Email { get; set; } = "";
     public ushort StudentProgramId { get; set; }
-    [ForeignKey("StudentProgram")]
+    [ForeignKey("StudentProgramId")]
     public StudentProgram? StudentPrograms { get; set; }
     public int Semester { get; set; }
 
@@ -25,6 +26,8 @@ public class Student
 
     // Navigation Property (One-to-Many)
     public List<CourseHistory>? CourseHistories { get; set; }
+    public List<AdvisorsNote>? AdvisorsNotes { get; set; }
+
 
     
 

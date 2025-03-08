@@ -1,6 +1,7 @@
-using System;
+
 
 namespace StudentAdvisor.Models;
+using StudentAdvisor.Models;
 
 public class CourseHistory
 {

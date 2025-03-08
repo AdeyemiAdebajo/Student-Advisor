@@ -1,0 +1,104 @@
+@page
+@model StudentAdvisor.Pages_Students.CreateModel
+
+@{
+    ViewData["Title"] = "Create Student";
+}
+
+<div class="container d-flex flex-column flex-grow-1 mt-4"> <!-- Pushed form up using mt-4 -->
+    
+    <!-- Centered Form -->
+    <div class="row justify-content-center flex-grow-1">
+        <div class="col-md-10 col-lg bg-white p-4 shadow-sm rounded">
+            <h1 class="text-center fw-bold">Create Student</h1>
+            <hr>
+
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="row g-7"> <!-- Added g-4 to increase column spacing -->
+                    <!-- Left Column -->
+                    <div class="col-md-6">
+                        <div class="mb-2">
+                            <label asp-for="Student.FirstName" class="form-label"></label>
+                            <input asp-for="Student.FirstName" class="form-control" placeholder="Enter first name" required />
+                            <span asp-validation-for="Student.FirstName" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-2">
+                            <label asp-for="Student.LastName" class="form-label"></label>
+                            <input asp-for="Student.LastName" class="form-control" placeholder="Enter last name" required />
+                            <span asp-validation-for="Student.LastName" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-2">
+                            <label asp-for="Student.Gender" class="form-label"></label>
+                            <select asp-for="Student.Gender" class="form-select" required>
+                                <option selected disabled>Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                            <span asp-validation-for="Student.Gender" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-2">
+                            <label asp-for="Student.PhoneNumber" class="form-label"></label>
+                            <input asp-for="Student.PhoneNumber" class="form-control" placeholder="Enter phone number" required />
+                            <span asp-validation-for="Student.PhoneNumber" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Student.Email" class="form-label"></label>
+                            <input asp-for="Student.Email" type="email" class="form-control" placeholder="Enter email" required />
+                            <span asp-validation-for="Student.Email" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <!-- Right Column -->
+                    <div class="col-md-6">
+                        <div class="mb-2">
+                            <label asp-for="Student.StudentProgramId" class="form-label"></label>
+                            <select asp-for="Student.StudentProgramId" class="form-select" asp-items="ViewBag.StudentProgramId" required>
+                                <option selected disabled>Select Program</option>
+                            </select>
+                            <span asp-validation-for="Student.StudentProgramId" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-2">
+                            <label asp-for="Student.Semester" class="form-label"></label>
+                            <input asp-for="Student.Semester" class="form-control" placeholder="Enter semester" required />
+                            <span asp-validation-for="Student.Semester" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-2">
+                            <label asp-for="Student.GPA" class="form-label"></label>
+                            <input asp-for="Student.GPA" type="number" step="0.1" class="form-control" placeholder="Enter GPA" required />
+                            <span asp-validation-for="Student.GPA" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-2">
+                            <label asp-for="Student.CreditsCompleted" class="form-label"></label>
+                            <input asp-for="Student.CreditsCompleted" type="number" class="form-control" placeholder="Enter completed credits" required />
+                            <span asp-validation-for="Student.CreditsCompleted" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-2">
+                            <label asp-for="Student.AcademicStanding" class="form-label"></label>
+                            <input asp-for="Student.AcademicStanding" class="form-control" placeholder="Enter academic standing" required />
+                            <span asp-validation-for="Student.AcademicStanding" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit & Back Buttons -->
+                <div class="d-grid gap-2 mt-3">
+                    <button type="submit" class="btn btn-primary">Create Student</button>
+                    <a asp-page="Index" class="btn btn-outline-secondary">Back to List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

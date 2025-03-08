@@ -50,13 +50,13 @@ namespace StudentAdvisor.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "0c58fbbd-57aa-4cda-b5c1-3bedb9b566c8",
+                            Id = "60d8e1f9-1df7-4507-b23c-dd687c7bac1a",
                             Name = "admin",
                             NormalizedName = "admin"
                         },
                         new
                         {
-                            Id = "16347b1b-9a67-4097-a709-a8a156104455",
+                            Id = "fccf05ac-6db8-4886-a282-54c618d40563",
                             Name = "client",
                             NormalizedName = "client"
                         });

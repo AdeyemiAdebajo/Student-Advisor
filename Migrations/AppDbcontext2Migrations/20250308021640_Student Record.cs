@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace StudentAdvisor.Migrations.AppDbcontext2Migrations
 {
     /// <inheritdoc />
-    public partial class updatedDB : Migration
+    public partial class StudentRecord : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -65,7 +65,6 @@ namespace StudentAdvisor.Migrations.AppDbcontext2Migrations
                     Email = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     StudentProgramId = table.Column<ushort>(type: "smallint unsigned", nullable: false),
-                    StudentProgram = table.Column<ushort>(type: "smallint unsigned", nullable: true),
                     Semester = table.Column<int>(type: "int", nullable: false),
                     GPA = table.Column<double>(type: "double", nullable: false),
                     CreditsCompleted = table.Column<int>(type: "int", nullable: false),
@@ -76,10 +75,11 @@ namespace StudentAdvisor.Migrations.AppDbcontext2Migrations
                 {
                     table.PrimaryKey("PK_Student", x => x.StudentId);
                     table.ForeignKey(
-                        name: "FK_Student_StudentProgram_StudentProgram",
-                        column: x => x.StudentProgram,
+                        name: "FK_Student_StudentProgram_StudentProgramId",
+                        column: x => x.StudentProgramId,
                         principalTable: "StudentProgram",
-                        principalColumn: "StudentProgramId");
+                        principalColumn: "StudentProgramId",
+                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -184,9 +184,9 @@ namespace StudentAdvisor.Migrations.AppDbcontext2Migrations
                 column: "StudentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Student_StudentProgram",
+                name: "IX_Student_StudentProgramId",
                 table: "Student",
-                column: "StudentProgram");
+                column: "StudentProgramId");
         }
 
         /// <inheritdoc />

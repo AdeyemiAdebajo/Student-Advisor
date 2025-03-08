@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StudentAdvisor.Data;
 
@@ -11,9 +12,11 @@ using StudentAdvisor.Data;
 namespace StudentAdvisor.Migrations.AppDbcontext2Migrations
 {
     [DbContext(typeof(AppDbcontext2))]
-    partial class AppDbcontext2ModelSnapshot : ModelSnapshot
+    [Migration("20250308034045_Added advisors note")]
+    partial class Addedadvisorsnote
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

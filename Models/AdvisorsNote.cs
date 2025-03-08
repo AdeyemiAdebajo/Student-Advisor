@@ -1,7 +1,6 @@
-using System;
 
 namespace StudentAdvisor.Models;
-
+using StudentAdvisor.Models;
 public class AdvisorsNote
 {
     public ushort AdvisorsNoteId { get; set; }
@@ -11,5 +10,6 @@ public class AdvisorsNote
     public Student? Students { get; set; }
     public String Note { get; set; } = " ";
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    
 
 }

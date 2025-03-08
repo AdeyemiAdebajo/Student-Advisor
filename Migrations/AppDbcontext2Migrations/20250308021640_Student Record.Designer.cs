@@ -12,8 +12,8 @@ using StudentAdvisor.Data;
 namespace StudentAdvisor.Migrations.AppDbcontext2Migrations
 {
     [DbContext(typeof(AppDbcontext2))]
-    [Migration("20250304075607_updated DB")]
-    partial class updatedDB
+    [Migration("20250308021640_Student Record")]
+    partial class StudentRecord
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -181,15 +181,12 @@ namespace StudentAdvisor.Migrations.AppDbcontext2Migrations
                     b.Property<int>("Semester")
                         .HasColumnType("int");
 
-                    b.Property<ushort?>("StudentProgram")
-                        .HasColumnType("smallint unsigned");
-
                     b.Property<ushort>("StudentProgramId")
                         .HasColumnType("smallint unsigned");
 
                     b.HasKey("StudentId");
 
-                    b.HasIndex("StudentProgram");
+                    b.HasIndex("StudentProgramId");
 
                     b.ToTable("Student", (string)null);
                 });
@@ -254,7 +251,9 @@ namespace StudentAdvisor.Migrations.AppDbcontext2Migrations
                 {
                     b.HasOne("StudentAdvisor.Models.StudentProgram", "StudentPrograms")
                         .WithMany("Students")
-                        .HasForeignKey("StudentProgram");
+                        .HasForeignKey("StudentProgramId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("StudentPrograms");
                 });
