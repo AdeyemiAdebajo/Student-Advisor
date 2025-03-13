@@ -20,6 +20,7 @@ namespace StudentAdvisor.Pages_Students
         }
 
         public Student Student { get; set; } = default!;
+        public StudentProgram  StudentProgram {get; set;}= default!;
 
         public async Task<IActionResult> OnGetAsync(ushort? id)
         {
@@ -28,7 +29,11 @@ namespace StudentAdvisor.Pages_Students
                 return NotFound();
             }
 
-            var student = await _context.Students.FirstOrDefaultAsync(m => m.StudentId == id);
+            var student = await _context.Students
+            .Include(s => s.StudentPrograms)
+            .Include(a=>a.AdvisorsNotes)
+            .Include(s => s.CourseHistories) 
+            .FirstOrDefaultAsync(m => m.StudentId == id);
             if (student == null)
             {
                 return NotFound();
@@ -38,6 +43,7 @@ namespace StudentAdvisor.Pages_Students
                 Student = student;
             }
             return Page();
+            
         }
     }
 }

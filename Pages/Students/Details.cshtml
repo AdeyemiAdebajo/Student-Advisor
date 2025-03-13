@@ -12,7 +12,8 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Student.FirstName)
+            First Name:
+            @* @Html.DisplayNameFor(model => model.Student.FirstName) *@
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Student.FirstName)
@@ -42,10 +43,10 @@
             @Html.DisplayFor(model => model.Student.Email)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Student.StudentPrograms)
+            @Html.DisplayNameFor(model => model.Student.StudentPrograms.programTitle)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Student.StudentPrograms.StudentProgramId)
+            @Html.DisplayFor(model => model.Student.StudentPrograms.programTitle)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Student.Semester)
@@ -70,6 +71,18 @@
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Student.AcademicStanding)
+        </dd>
+        
+         <<dt class="col-sm-2">
+            Advisor Notes
+        </dt>
+        <dd class="col-sm-10">
+            <ul>
+                @foreach (var note in Model.Student.AdvisorsNotes)
+                {
+                    <li>@note.Note (@note.CreatedAt.ToString("yyyy-MM-dd"))</li>
+                }
+            </ul>
         </dd>
     </dl>
 </div>
