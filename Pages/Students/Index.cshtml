@@ -14,24 +14,30 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Student[0].FirstName)
+                First Name 
+                @* @Html.DisplayNameFor(model => model.Student[0].FirstName) *@
             </th>
+
             <th>
                 @Html.DisplayNameFor(model => model.Student[0].LastName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Student[0].Gender)
             </th>
-            <th>
+            @* <th>
                 @Html.DisplayNameFor(model => model.Student[0].PhoneNumber)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Student[0].Email)
-            </th>
+            </th> *@
+
+            
+
+            
             <th>
                 @Html.DisplayNameFor(model => model.Student[0].StudentPrograms)
             </th>
-            <th>
+            @* <th>
                 @Html.DisplayNameFor(model => model.Student[0].Semester)
             </th>
             <th>
@@ -42,7 +48,7 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Student[0].AcademicStanding)
-            </th>
+            </th> *@
             <th></th>
         </tr>
     </thead>
@@ -50,24 +56,25 @@
 @foreach (var item in Model.Student) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
+                @* @Html.DisplayFor(modelItem => item.FirstName) *@
+                <a asp-page="./Details" asp-route-id="@item.StudentId"> @Html.DisplayFor(modelItem => item.FirstName) </a> 
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.LastName)
+               <a asp-page="./Details" asp-route-id="@item.StudentId">     @Html.DisplayFor(modelItem => item.LastName)</a> 
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Gender)
             </td>
-            <td>
+            @* <td>
                 @Html.DisplayFor(modelItem => item.PhoneNumber)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Email)
-            </td>
+            </td> *@
             <td>
-                @Html.DisplayFor(modelItem => item.StudentPrograms.StudentProgramId)
+                @Html.DisplayFor(modelItem => item.StudentPrograms.programTitle)
             </td>
-            <td>
+            @* <td>
                 @Html.DisplayFor(modelItem => item.Semester)
             </td>
             <td>
@@ -83,7 +90,7 @@
                 <a asp-page="./Edit" asp-route-id="@item.StudentId">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.StudentId">Details</a> |
                 <a asp-page="./Delete" asp-route-id="@item.StudentId">Delete</a>
-            </td>
+            </td> *@
         </tr>
 }
     </tbody>
