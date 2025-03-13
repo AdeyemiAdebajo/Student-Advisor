@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using StudentAdvisor.Data;
 using StudentAdvisor.Models;
 
-namespace StudentAdvisor.Pages_Students
+namespace StudentAdvisor.Pages_Advisor
 {
     public class DetailsModel : PageModel
     {
@@ -19,8 +19,7 @@ namespace StudentAdvisor.Pages_Students
             _context = context;
         }
 
-        public Student Student { get; set; } = default!;
-        public StudentProgram  StudentProgram {get; set;}= default!;
+        public AdvisorsNote AdvisorsNote { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(ushort? id)
         {
@@ -29,21 +28,16 @@ namespace StudentAdvisor.Pages_Students
                 return NotFound();
             }
 
-            var student = await _context.Students
-            .Include(s => s.StudentPrograms)
-            .Include(a=>a.AdvisorsNotes)
-            .Include(s => s.CourseHistories) 
-            .FirstOrDefaultAsync(m => m.StudentId == id);
-            if (student == null)
+            var advisorsnote = await _context.AdvisorsNotes.FirstOrDefaultAsync(m => m.AdvisorsNoteId == id);
+            if (advisorsnote == null)
             {
                 return NotFound();
             }
             else
             {
-                Student = student;
+                AdvisorsNote = advisorsnote;
             }
             return Page();
-            
         }
     }
 }
