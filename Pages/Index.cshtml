@@ -1,16 +1,18 @@
-﻿@* @page 
-@model StudentAdvisor.Pages.Login.IndexModel
+﻿@page
+@model StudentAdvisor.Pages.IndexModel
 @{
-    ViewData["Title"] = "Login";
-    Layout = "_LoginLayout";
-    
-
-} *@
-@page 
-@model IndexModel
-@{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Welcome";
 }
 
+<div class="container mt-5">
+    <div class="card shadow p-5 text-center">
+        <h1 class="display-4 mb-4">👋 Welcome, <span class="text-primary">@Model.FirstName</span>!</h1>
+        <p class="lead">We hope you're having a great day at StudentAdvisor.</p>
 
+        <div class="alert alert-info mt-4 fs-5 w-50 mx-auto">
+            🌤️ North Bay Weather: <strong>@Model.WeatherDescription</strong>
+        </div>
 
+        <a asp-page="/Students/Index" class="btn btn-lg btn-success mt-5">📚 Go to Student Dashboard</a>
+    </div>
+</div>

@@ -9,6 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container with authentication enforced
 // builder.Services.AddRazorPages();
+builder.Services.AddHttpClient(); // ✅ Add this to enable IHttpClientFactory
+
 builder.Services.AddRazorPages(options =>
 {
     // Require authentication for all pages
