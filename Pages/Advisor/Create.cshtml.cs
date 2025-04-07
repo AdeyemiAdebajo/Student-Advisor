@@ -37,7 +37,8 @@ namespace StudentAdvisor.Pages_Advisor
             }
 
             _context.AdvisorsNotes.Add(AdvisorsNote);
-            await _context.SaveChangesAsync();
+            var adnote = await _context
+            .SaveChangesAsync();
 
             return RedirectToPage("./Index");
         }

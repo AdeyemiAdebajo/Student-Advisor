@@ -1,0 +1,42 @@
+﻿@page
+@model StudentAdvisor.Pages_Students.GraduatingModel
+@{
+    ViewData["Title"] = "Graduating Students";
+}
+
+<h1>Graduating Students</h1>
+
+@if (Model.GraduatingStudents.Any())
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Program</th>
+                <th>GPA</th>
+                <th>Credits Completed</th>
+               
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var student in Model.GraduatingStudents)
+            {
+                <tr>
+                    @* <td>@student.FirstName</td> *@
+                   <td><a asp-page="/Students/Details" asp-route-id="@student.StudentId">@student.FirstName</a></td>
+                   
+                    <td><a asp-page="/Students/Details" asp-route-id="@student.StudentId">@student.LastName</a></td>
+                    <td>@student.StudentPrograms?.programTitle</td>
+                    <td>@student.GPA</td>
+                    <td>@student.CreditsCompleted</td>
+                 
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p><strong>No students are currently eligible for graduation.</strong></p>
+}
