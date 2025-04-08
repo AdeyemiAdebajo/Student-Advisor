@@ -6,7 +6,7 @@
 
     var groupedNotes = Model.AdvisorsNote
         .Where(a => a.Students != null)
-        .GroupBy(a => a.Students.StudentId)
+        .GroupBy(a => a.Students.FirstName)
         .ToList();
 }
 

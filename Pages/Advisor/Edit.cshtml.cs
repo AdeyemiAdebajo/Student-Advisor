@@ -30,13 +30,24 @@ namespace StudentAdvisor.Pages_Advisor
                 return NotFound();
             }
 
-            var advisorsnote =  await _context.AdvisorsNotes.FirstOrDefaultAsync(m => m.AdvisorsNoteId == id);
+            var advisorsnote = await _context.AdvisorsNotes
+            .Include(a => a.Students)
+            .FirstOrDefaultAsync(m => m.AdvisorsNoteId == id);
             if (advisorsnote == null)
             {
                 return NotFound();
             }
             AdvisorsNote = advisorsnote;
-           ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "StudentId");
+           ViewData["StudentId"] = new SelectList(
+                _context.Students
+                    .OrderBy(s => s.FirstName)
+                    .Select(s => new {
+                        s.StudentId,
+                        FullName = s.FirstName + " " + s.LastName
+                    }),
+                "StudentId",
+                "FullName");
+
             return Page();
         }
 
