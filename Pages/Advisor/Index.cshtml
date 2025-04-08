@@ -2,47 +2,63 @@
 @model StudentAdvisor.Pages_Advisor.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Advisor Notes";
+
+    var groupedNotes = Model.AdvisorsNote
+        .Where(a => a.Students != null)
+        .GroupBy(a => a.Students.StudentId)
+        .ToList();
 }
 
-<h1>Index</h1>
+<h1>Advisor Notes</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create" class="btn btn-primary">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.AdvisorsNote[0].Students)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AdvisorsNote[0].Note)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AdvisorsNote[0].CreatedAt)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.AdvisorsNote) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Students.StudentId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Note)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedAt)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.AdvisorsNoteId">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.AdvisorsNoteId">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.AdvisorsNoteId">Delete</a>
-            </td>
-        </tr>
+
+@foreach (var group in groupedNotes)
+{
+    var student = group.First().Students;
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header bg-light">
+            <h5 class="mb-0">
+                <a asp-page="/Students/Details" asp-route-id="@student.StudentId">
+                    @student.FirstName @student.LastName
+                </a>
+            </h5>
+        </div>
+        <div class="card-body">
+            @if (group.Any())
+            {
+                <table class="table table-bordered table-sm">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Note</th>
+                            <th>Created At</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var note in group)
+                        {
+                            <tr>
+                                <td>@note.Note</td>
+                                <td>@note.CreatedAt.ToString("yyyy-MM-dd")</td>
+                                <td>
+                                    <a asp-page="./Edit" asp-route-id="@note.AdvisorsNoteId" class="btn btn-sm btn-warning">Edit</a>
+                                    <a asp-page="./Details" asp-route-id="@note.AdvisorsNoteId" class="btn btn-sm btn-info">Details</a>
+                                    <a asp-page="./Delete" asp-route-id="@note.AdvisorsNoteId" class="btn btn-sm btn-danger">Delete</a>
+                                     <a asp-page="./create" asp-route-id="@note.AdvisorsNoteId" class="btn btn-sm btn-warning">Add new note</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <p class="text-muted">No notes available for this student.</p>
+            }
+        </div>
+    </div>
 }
-    </tbody>
-</table>
