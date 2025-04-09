@@ -24,7 +24,8 @@ namespace StudentAdvisor.Pages_Advisor
         public async Task OnGetAsync()
         {
             AdvisorsNote = await _context.AdvisorsNotes
-                .Include(a => a.Students).ToListAsync();
+                .Include(a => a.Students)
+                .ToListAsync();
         }
     }
 }

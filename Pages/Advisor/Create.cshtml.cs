@@ -21,7 +21,16 @@ namespace StudentAdvisor.Pages_Advisor
 
         public IActionResult OnGet()
         {
-        ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "StudentId");
+        ViewData["StudentId"] = new SelectList(
+                _context.Students
+                    .OrderBy(s => s.FirstName)
+                    .Select(s => new {
+                        s.StudentId,
+                        FullName = s.FirstName + " " + s.LastName
+                    }),
+                "StudentId",
+                "FullName");
+
             return Page();
         }
 

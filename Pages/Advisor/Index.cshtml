@@ -46,7 +46,7 @@
                                 <td>@note.CreatedAt.ToString("yyyy-MM-dd")</td>
                                 <td>
                                     <a asp-page="./Edit" asp-route-id="@note.AdvisorsNoteId" class="btn btn-sm btn-warning">Edit</a>
-                                    <a asp-page="./Details" asp-route-id="@note.AdvisorsNoteId" class="btn btn-sm btn-info">Details</a>
+                                    @* <a asp-page="./Details" asp-route-id="@note.AdvisorsNoteId" class="btn btn-sm btn-info">Details</a> *@
                                     <a asp-page="./Delete" asp-route-id="@note.AdvisorsNoteId" class="btn btn-sm btn-danger">Delete</a>
                                      <a asp-page="./create" asp-route-id="@note.AdvisorsNoteId" class="btn btn-sm btn-warning">Add new note</a>
                                 </td>
